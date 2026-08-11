@@ -12,7 +12,7 @@ import zipfile
 
 
 REPO = Path(__file__).resolve().parents[1]
-SCRIPTS = REPO / "codex-document-prep" / "scripts"
+SCRIPTS = REPO / "skills" / "codex-document-prep" / "scripts"
 
 
 def run(*args: str) -> subprocess.CompletedProcess[str]:
