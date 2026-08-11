@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Document Prep"
+  short_description: "本地转换、清理、拆分并按需检索大型文档，减少上下文占用"
+  default_prompt: "Use $codex-document-prep to prepare these documents locally and retrieve only the relevant chunks."
